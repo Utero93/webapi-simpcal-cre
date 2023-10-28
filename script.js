@@ -1,52 +1,85 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
-document.addEventListener("DOMContentLoaded", function() {
-  var currentDate = new Date();
-  var calendarElement = document.getElementById("calendar");
-  var currentDayElement = document.getElementById("current-day");
+// step 2
+const displayDateEl = $("#cur-date");
+const displayTimeEl = $("#cur-time");
 
-  // Display current day at the top of the calendar
-  currentDayElement.textContent = currentDate.toDateString();
+const currentHour = dayjs().format("H");
 
-  // Create time blocks
-  for (var i = 9; i <= 17; i++) {
-    var timeBlock = document.createElement("div");
-    timeBlock.classList.add("time-block");
+// step 1
+const currentDate = dayjs().format("MMMM D, YYYY");  
+const currentTime = dayjs().format("h:mm A");
 
-    var timeLabel = document.createElement("div");
-    timeLabel.classList.add("time");
-    timeLabel.textContent = formatTime(i);
+// console.log(currentDate);
+// console.log(currentTime);
 
-    var eventInput = document.createElement("input");
-    eventInput.classList.add("event-input");
-    eventInput.setAttribute("data-hour", i);
-    eventInput.setAttribute("type", "text");
-    eventInput.value = localStorage.getItem(i);
+// step 3
+displayDateEl.append("Date: " + currentDate);
+displayTimeEl.append("Time: " + currentTime); 
 
-    var saveButton = document.createElement("button");
-    saveButton.classList.add("save-btn");
-    saveButton.setAttribute("data-hour", i);
-    saveButton.textContent = "Save";
 
-    timeBlock.appendChild(timeLabel);
-    timeBlock.appendChild(eventInput);
-    timeBlock.appendChild(saveButton);
+// Set color coding for time blocks
 
-    calendarElement.appendChild(timeBlock);
-  }
 
-  // Set color coding for time blocks
-  updateTimeBlockColors();
-
-  // Attach click event listener to save buttons
+// Attach click event listener to save buttons
   var saveButtons = document.getElementsByClassName("save-btn");
   for (var j = 0; j < saveButtons.length; j++) {
     saveButtons[j].addEventListener("click", saveEvent);
   }
-});
+
+// Format hour in 12-hour format
+
+function formatTime(hour) {
+  if (hour < 12) {
+    return hour + "am";
+  } else if (hour === 12) {
+    return "12pm";
+  } else {
+    return hour - 12 + "pm";
+  }
+}
+
+// Save event to localStorage
+
+$(".saveBtn").on("click", function(){
+  let textArea = $(this).siblings(".description").val();
+  console.log(textArea);
+
+  let timeArea = $(this).parent().attr("id");
+  console.log(timeArea);
+
+  localStorage.setItem(timeArea, textArea);
+
+})
+
+for(let i = 9; i < 18; i++) {
+  let localText = $("#hour-" + i + " .description");
+  console.log(localText.val());
+
+  localText.val(localStorage.getItem("hour-" + i));
+
+}
 
 
+// Update time block colors based on current time
+
+ for(let i = 9; i < 18; i++) {
+  let timeBlockEl = $("#hour-" + i + " .description");
+  if (i < currentHour) {
+    timeBlockEl.removeClass("present");
+    timeBlockEl.removeClass("future");
+    timeBlockEl.addClass("past");
+  } else if (i == currentHour) {
+    timeBlockEl.removeClass("past");
+    timeBlockEl.removeClass("future");
+    timeBlockEl.addClass("present");
+  } else {
+    timeBlockEl.removeClass("past");
+    timeBlockEl.removeClass("present");
+    timeBlockEl.addClass("future");
+  }
+ }
 
 
 
