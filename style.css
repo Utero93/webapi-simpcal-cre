@@ -1,7 +1,20 @@
+/* Variables */
+:root {
+  --past: #878686;
+  --present: #f54036;
+  --future: #5fe25f;
+  --bckgrnd: rgb(29, 29, 29);
+  --white: white;
+  --timeslot: #5b9cbd;
+  --savebtn: rgb(223, 228, 60);
+}
+/* universal selectors */
 body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   line-height: 1;
+  background-color: var(--bckgrnd);
+  color: var(--white);
 }
 
 textarea {
@@ -11,8 +24,14 @@ textarea {
   color: #000000;
   border-left: 1px solid black;
   padding: 10px;
-  width: 80%;
-  height: 80%;
+  width: 100%;
+  height: 100%;
+}
+
+/* class selectors */
+
+p.intro {
+  border-bottom: 2px solid var(--white);
 }
 
 .description {
@@ -28,35 +47,49 @@ textarea {
 }
 
 .hour {
-  background-color: #ffffff;
-  color: #000000;
-  border-top: 1px dashed #000000;
+  background-color: var(--timeslot);
+  color: white;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+/* Dynamic Classes for  */
+
 .past {
-  background-color: #d3d3d3;
+  background-color: var(--past);
   color: white;
 }
 
 .present {
-  background-color: #ff6961;
+  background-color: var(--present);
   color: white;
 }
 
 .future {
-  background-color: #77dd77;
+  background-color: var(--future);
   color: white;
 }
+
+/* Save Button Selector */
 
 .saveBtn {
   border-left: 1px solid black;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
-  background-color: #06aed5;
+  background-color: var(--savebtn);
   color: white;
 }
 
 .saveBtn i:hover {
   font-size: 20px;
   transition: all 0.3s ease-in-out;
+}
+
+/* ID selector for p tag */
+
+#cur-time {
+  margin: 0;
 }
