@@ -8,7 +8,7 @@ In this repository an HTML/JS file a work scheduled is displayed using timeblock
 The date and time of the day are displayed in the top section of the schedule. 
 The updated work schedule will be display in the browser on [this page](https://utero93.github.io/webapi-simpcal-cre/)
 
-![Password Generator](Password-gen-screenshot.png)
+![Work Scheduler](./Work-day-cal.png)
 
 ## Installation
 Navigate to the repository,
