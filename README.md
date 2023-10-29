@@ -2,8 +2,8 @@
 
 ## Description 
 In this repository an HTML/JS file a work scheduled is displayed using timeblocks designated from 9am to 5pm. The text area can be filled and saved via the local storage. The blocks change color depending on the current hour. The colors used are listed as such
->* Grey to indidct its past that hour
->* Red to indict the current hour
+>* Grey to indidcate its past that hour
+>* Red to indicate the current hour
 >* Green indicates the hours ahead. 
 The date and time of the day are displayed in the top section of the schedule. 
 The updated work schedule will be display in the browser on [this page](https://utero93.github.io/webapi-simpcal-cre/)
